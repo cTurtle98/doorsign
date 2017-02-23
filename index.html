@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>DoorSign - 98Seaturtles</title>
+    <style>
+    	body {
+      		margin: 0;
+    	}
+		#main {
+			height: 1366px;
+			width: 768px;
+			background-color: black;
+			text-align: center;
+		}
+		#header {
+			background-color: green;
+			color: yellow;
+		}
+		.message {
+			display: none;
+			background-color: gray;
+		}
+		.message.active {
+		display: block;
+		}
+		.message.home {
+			background-color: green;
+		}	
+		.message.away {
+			background-color: orange;
+		}
+		.message.live {
+			background-color: red;
+		}
+		.message.recording {
+			background-color: red;
+		}
+/* CUSTOM TYPEFACES */
+    .title {
+      font-size: 60pt;
+    }
+    .status {
+      font-size: 48pt;
+    }
+/* END CUSTOM TYPEFACES */
+    </style>
+<!-- TWITCH SCRIPTS -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="http://player.twitch.tv/js/embed/v1.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		if ($(".message.live").hasClass("active")) {
+			var options = {
+				width: 760,
+				height: 432,
+				channel: "cturtle98"
+			};
+			var player = new Twitch.Player("twitch", options);
+			player.setMuted(true);
+			player.setQuality("low");
+			player.play();
+		}
+//LCD BURN IN GUARD START
+		var $burnGuard = $('<div>').attr('id','burnGuard').css({
+			'background-color':'#FF00FF',
+			'width':'1px',
+			'height':$(document).height()+'px',
+			'position':'absolute',
+			'top':'0px',
+			'left':'0px',
+			'display':'none'
+		}).appendTo('body');
+
+		var colors = ['#FF0000','#00FF00','#0000FF'], color = 0, delay = 5000, scrollDelay = 10500;
+		function burnGuardAnimate()
+		{
+			color = ++color % 3;
+			var rColor = colors[color];
+			$burnGuard.css({
+				'left':'0px',
+				'background-color':rColor,
+			}).show().animate({
+				'left':$(window).width()-1+'px'
+			},scrollDelay,function(){
+				$(this).hide();
+			});
+			setTimeout(burnGuardAnimate,delay);
+		}
+		setTimeout(burnGuardAnimate,delay);
+//LCD BURN IN GUARD END
+	});
+	</script>
+<!-- END TWITCH SCRIPTS-->
+  </head>
+  <body>
+    <div id="main">
+		<div id="header">
+		<br>
+			<a style="font-size: 72pt;">
+			Ciaran's Room
+			</a><br>
+		<br>
+		</div>
+		<br>
+<!-- MESSAGES MESSAGES MESSAGES MESSAGES -->
+		<div class="message template active">
+			<br>
+			<a class="title">
+				TITLE TITLE
+			</a>
+			<br><br>
+			<a class="status">
+				STATUS STATUS STATUS
+			</a>
+			<br>
+		</div>
+    </div>
+  </body>
+</html>
