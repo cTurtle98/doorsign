@@ -15,6 +15,7 @@
 			background-color: green;
 			color: yellow;
 		}
+		
 /* CUSTOM TYPEFACES */
     .title {
       font-size: 60pt;
@@ -36,7 +37,7 @@
 		</div>
 		<br>
 <!-- MESSAGES MESSAGES MESSAGES MESSAGES -->
-		<div class="message">
+		<div class="message ">
 			<br>
 			<span id="title">
 				TITLE TITLE
@@ -59,8 +60,18 @@
         request = new XMLHttpRequest();
         request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200) {
-            document.getElementById('title').innerHTML = response['title'];
-            document.getElementById('status').innerHTML = response['status'];
+			  var response = request.responseText;
+			  var title = response.title;
+			  var type = response.type;
+			  var status = response.status
+			  var currentTitle = document.getElementById('title');
+			  var currentStatus = document.getElementById('status');
+			  
+if(title != currentTitle || status != currentStatus){
+    currentTitle.innerHTML = title;
+    currentStatus.innerHTML = status;
+    document.getElementById('message').setAttribute("class", type)
+}
           }
         };
         request.open('GET', 'pageupdate.php', true);
