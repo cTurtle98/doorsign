@@ -37,7 +37,7 @@
 		</div>
 		<br>
 <!-- MESSAGES MESSAGES MESSAGES MESSAGES -->
-		<div class="message ">
+		<div id="message" class="">
 			<br>
 			<span id="title">
 				TITLE TITLE
