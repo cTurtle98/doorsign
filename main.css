@@ -1,0 +1,28 @@
+body {
+	margin: 0;
+}
+#main {
+	height: 1366px;
+	width: 768px;
+	background-color: gray;
+	text-align: center;
+}
+#header {
+	background-color: green;
+	color: yellow;
+}
+#title {
+	font-size: 60pt;
+}
+#status {
+	font-size: 48pt;
+}
+.home {
+	background-color: green;
+}
+.away {
+	background-color: gray:
+}
+.do-not-disturb {
+	background-color: red;
+}

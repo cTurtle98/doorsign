@@ -1,39 +1,7 @@
 <html>
   <head>
-    <title>DoorSign - 98Seaturtles</title>
-    <style>
-    	body {
-      		margin: 0;
-    	}
-		#main {
-			height: 1366px;
-			width: 768px;
-			background-color: gray;
-			text-align: center;
-		}
-		#header {
-			background-color: green;
-			color: yellow;
-		}
-		.home {
-			background-color: green;
-		}
-		.away {
-			background-color: gray:
-		}
-		.do-not-disturb {
-			background-color: red;
-		}
-		
-/* CUSTOM TYPEFACES */
-    .title {
-      font-size: 60pt;
-    }
-    .status {
-      font-size: 48pt;
-    }
-/* END CUSTOM TYPEFACES */
-	  </style>
+	  <title>DoorSign - 98Seaturtles</title>
+	  <link rel="stylesheet" href="main.css">
   </head>
   <body>
     <div id="main">
@@ -49,11 +17,9 @@
 		<div id="message" class="">
 			<br>
 			<span id="title">
-				TITLE TITLE
 			</span>
 			<br><br>
 			<span id="status">
-				STATUS STATUS STATUS
 			</span>
 			<br>
 		</div>
@@ -70,9 +36,9 @@
         request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200) {
 			  var response = request.responseText;
-			  var title = response.title;
-			  var type = response.type;
-			  var status = response.status
+			  var title = response[0].title;
+			  var type = response[0].type;
+			  var status = response[0].status
 			  var currentTitle = document.getElementById('title');
 			  var currentStatus = document.getElementById('status');
 			  
