@@ -8,12 +8,21 @@
 		#main {
 			height: 1366px;
 			width: 768px;
-			background-color: black;
+			background-color: gray;
 			text-align: center;
 		}
 		#header {
 			background-color: green;
 			color: yellow;
+		}
+		.home {
+			background-color: green;
+		}
+		.away {
+			background-color: gray:
+		}
+		.do-not-disturb {
+			background-color: red;
 		}
 		
 /* CUSTOM TYPEFACES */
