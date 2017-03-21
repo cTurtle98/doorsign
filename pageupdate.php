@@ -1,7 +1,22 @@
 <?php
-if (function_exists('mysqli_connect')) {
- echo 'Yes';
-}else{
-echo 'No';
+
+$resArray = array();
+$servername = "localhost";
+$username = "doorsign";
+$password = "doorsign";
+$dbname = "door_sign";
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+if (!$conn) {
+    die("Connection failed: ".mysqli_connect_error());
 }
+$sql = "SELECT * FROM messages WHERE `active` = 1";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($resArray, $row);
+    }
+}
+
+print_r($resArray);
+
 ?>
