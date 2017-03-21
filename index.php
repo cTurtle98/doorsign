@@ -35,10 +35,10 @@
         request = new XMLHttpRequest();
         request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200) {
-			  var response = request.responseText;
-			  var title = response[0].title;
-			  var type = response[0].type;
-			  var status = response[0].status
+			  var response = JSON.parse(request.responseText);
+			  var title = response.title;
+			  var type = response.type;
+			  var status = response.status;
 			  var currentTitle = document.getElementById('title');
 			  var currentStatus = document.getElementById('status');
 			  
