@@ -15,7 +15,7 @@ if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_assoc($result)) {
                         array_push($resArray, $row);
                     }
-                    print_r($resArray);
+                    print_r(json_encode($resArray));
                    }
 
 ?>
