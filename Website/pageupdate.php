@@ -1,21 +1,30 @@
 <?php
 
 $resArray = array();
-$servername = "localhost";
-$username = "doorsign";
-$password = "doorsign";
-$dbname = "door_sign";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
-    die("Connection failed: ".mysqli_connect_error());
-}
-$sql = "SELECT type, title, status FROM messages WHERE `active` = 1";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        array_push($resArray, $row);
-                    }
-                    print_r(json_encode($resArray));
-                   }
+$db_host = "localhost";
+$db_username = "doorsign";
+$db_password = "doorsign";
+$database = "door_sign";
+$dbcon = new PDO("mysql:host=$db_host;dbname=$database", $db_username, $db_password);
 
+if (!$dbcon) {
+    die("Connection failed");
+}
+
+$stmt = $dbcon->prepare("SELECT `type`, `title`, `status` FROM `messages` WHERE `active` = '1'");
+$success = $stmt->execute();
+
+if (!$success) {
+    die("Error fetching message"); //TODO: Print error
+}
+
+if ($stmt->rowCount() == 0) {
+    die();
+}
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    array_push($resArray, $row);
+}
+
+print(json_encode($resArray));
 ?>

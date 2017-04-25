@@ -12,6 +12,9 @@ iframe {
 	background-color: black;
 	text-align: center;
 }
+#cardmessage-frame {
+    display: none;
+}
 #header {
 	background-color: green;
 	color: yellow;
