@@ -7,7 +7,7 @@ $db_host = "localhost";
 $db_username = "doorsign";
 $db_password = "doorsign";
 $database = "door_sign";
-$RowCard = $_GET["card-num"];
+$RowCard = $_REQUEST["card-num"];
 $Table = "cards";
 $dbcon = new PDO("mysql:host=$db_host;dbname=$database", $db_username, $db_password);
 
