@@ -1,6 +1,5 @@
 <?php
 
-$resArray = array();
 $db_host = "localhost";
 $db_username = "doorsign";
 $db_password = "doorsign";
@@ -11,7 +10,7 @@ if (!$dbcon) {
     die("Connection failed");
 }
 
-$stmt = $dbcon->prepare("SELECT `type`, `title`, `status` FROM `messages` WHERE `active` = '1'");
+$stmt = $dbcon->prepare("SELECT `type`, `title`, `status` FROM `messages` WHERE `active` = '1' LIMIT 1");
 $success = $stmt->execute();
 
 if (!$success) {
@@ -22,9 +21,7 @@ if ($stmt->rowCount() == 0) {
     die();
 }
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    array_push($resArray, $row);
-}
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-print(json_encode($resArray));
+print(json_encode($row));
 ?>
