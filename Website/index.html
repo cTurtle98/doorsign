@@ -14,7 +14,6 @@
 		</div>
 <!--         <form action="/cardmessage.php" method="get" target="cardmessage-frame"> -->
         <input type="text" id="card-num" autofocus>
-        <button id="card-submit">Submit</button>
 		<br>
 <!-- MESSAGES MESSAGES MESSAGES MESSAGES -->
 		<div id="message" class="">
@@ -30,19 +29,23 @@
 	  </div>
   </body>
 <script>
+    var currentMessageId = null;
+
     function get() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function() {
             if (request.readyState == 4) {
                 if (request.status == 200) {
                     var response = JSON.parse(request.responseText);
+                    var id = response.id;
                     var title = response.title;
                     var type = response.type;
                     var status = response.status;
                     var currentTitle = document.getElementById('title');
                     var currentStatus = document.getElementById('status');
 
-                    if (title != currentTitle || status != currentStatus) {
+                    if (id !== currentMessageId) {
+                        currentMessageId = id;
                         currentTitle.innerHTML = title;
                         currentStatus.innerHTML = status;
                         document.getElementById('message').setAttribute("class", type)
@@ -56,20 +59,23 @@
     }
 
     window.onload = function() {
-        document.getElementById("card-submit").onclick = function() {
-            var request = new XMLHttpRequest();
-            var url = "/cardmessage.php";
-            var data = "card-num=" + document.getElementById("card-num").value;
-            request.open("POST", url, true);
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.onreadystatechange = function () {
-                if (request.readyState == 4 && request.status == 200) {
-                    document.getElementById("card-num").value = "";
-                    console.log("Card scan: " + request.responseText);
-                }
-            };
-            request.send(data);
-        };
+        document.getElementById("card-num").addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode == 13) {
+                var request = new XMLHttpRequest();
+                var url = "/cardmessage.php";
+                var data = "card-num=" + document.getElementById("card-num").value;
+                request.open("POST", url, true);
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4 && request.status == 200) {
+                        document.getElementById("card-num").value = "";
+                        console.log("Card scan: " + request.responseText);
+                    }
+                };
+                request.send(data);
+            }
+        });
 
         get();
     };

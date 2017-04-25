@@ -10,7 +10,7 @@ if (!$dbcon) {
     die("Connection failed");
 }
 
-$stmt = $dbcon->prepare("SELECT `type`, `title`, `status` FROM `messages` WHERE `active` = '1' LIMIT 1");
+$stmt = $dbcon->prepare("SELECT `id`, `type`, `title`, `status` FROM `messages` WHERE `active` = '1' LIMIT 1");
 $success = $stmt->execute();
 
 if (!$success) {
