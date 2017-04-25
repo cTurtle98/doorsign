@@ -1,5 +1,10 @@
+/* CSS FOR 98SeaTurtles DoorSign */
+
 body {
 	margin: 0;
+}
+iframe {
+	overflow: hidden;
 }
 #main {
 	height: 1366px;
@@ -21,7 +26,7 @@ body {
 	background-color: green;
 }
 .away {
-	background-color: gray:
+	background-color: grey;
 }
 .do-not-disturb {
 	background-color: red;
