@@ -13,3 +13,8 @@ $`sudo apt-get install apache2 php5 mysql phpmyadmin`
 then you will need to download the files from this repo
 
 $`git clone https://github.com/cTurtle98/doorsign.git`
+
+copy the files from the website folder into the html folder for apache
+
+$`sudo cp ./dorsign/Website/* /var/www/html`
+
