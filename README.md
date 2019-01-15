@@ -1,5 +1,5 @@
 ## v2 in developement!
-(doorpy)[https://github.com/cTurtle98/doorpy]
+[doorpy](https://github.com/cTurtle98/doorpy)
 using python flask and dictionaries instead of php and mysql like this one uses
 doorpy will be significantly more portable than this version
 
